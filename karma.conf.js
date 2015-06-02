@@ -13,6 +13,7 @@ module.exports = function (config) {
     files: [
       'bower_components/soyutils/soyutils.js',
       'bower_components/metaljs/src/**/*.js',
+      'bower_components/metal-position/src/**/*.js',
       'bower_components/aui-component/src/**/*.js',
       'src/**/*.js',
       'test/**/*.js'
@@ -22,6 +23,7 @@ module.exports = function (config) {
       'src/!(*.soy).js': ['coverage', 'commonjs'],
       'src/*.soy.js': ['babel', 'commonjs'],
       'bower_components/metaljs/**/*.js': ['babel', 'commonjs'],
+      'bower_components/metal-position/**/*.js': ['babel', 'commonjs'],
       'bower_components/aui-component/**/*.js': ['babel', 'commonjs'],
       'test/**/*.js': ['babel', 'commonjs']
     },

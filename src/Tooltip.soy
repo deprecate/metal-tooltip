@@ -2,6 +2,25 @@
 
 /**
  * This renders the main element.
+ * @param content
  */
 {template .content}
+	<div class="tooltip-arrow"></div>
+	{delcall Tooltip.inner data="all" /}
 {/template}
+
+/**
+ * @param content
+ */
+{template .inner}
+	{$content}
+{/template}
+
+/**
+ * @param? elementContent
+ * @param id
+ * @param? surfaceId
+ */
+{deltemplate Tooltip.inner variant="'element'"}
+	<section id="{$id}-inner" class="tooltip-inner">{$elementContent}</section>
+{/deltemplate}

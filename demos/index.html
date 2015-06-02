@@ -11,8 +11,15 @@
 </head>
 <body>
 	<h1>Tooltip</h1>
+	<button type="button" id="TooltipButton">Tooltip Button</button>
 	<script type="text/javascript">
-		window.tooltip = new metal.Tooltip().render();
+		window.tooltip = new metal.Tooltip({
+			content: 'My cool tooltip',
+			delay: [300, 150],
+			elementClasses: 'fade',
+			selector: '#TooltipButton',
+			visible: false
+		}).render();
 	</script>
 </body>
 </html>
