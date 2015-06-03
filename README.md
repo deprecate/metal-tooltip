@@ -1,3 +1,3 @@
-# AlloyUI Tooltip
+# Alloy Tooltip
 
-AlloyUI's tooltip component.
+Alloy's tooltip component.

@@ -1,17 +1,17 @@
 {
-  "name": "aui-tooltip",
+  "name": "alloy-tooltip",
   "version": "0.1.0",
-  "homepage": "https://github.com/alloyui/tooltip",
+  "homepage": "https://github.com/metal/alloy-tooltip",
   "authors": [
     "Maira Bello <maira.araujo@liferay.com>"
   ],
-  "description": "AlloyUI's tooltip component",
+  "description": "Alloy's tooltip component",
   "main": "src/Modal.js",
   "moduleType": [
     "es6"
   ],
   "keywords": [
-    "aui",
+    "alloy",
     "alloyui",
     "metaljs",
     "tooltip"
@@ -24,7 +24,6 @@
   "dependencies": {
     "metaljs": "liferay/metal.js#master",
     "soyutils": "2014.04.22",
-    "aui-component": "alloyui/component",
     "bootstrap-sass": "~3.3.4",
     "metal-position": "eduardolundgren/metal-position#master"
   }

@@ -3,15 +3,15 @@
 import core from 'bower:metaljs/src/core';
 import dom from 'bower:metaljs/src/dom/dom';
 import Align from 'bower:metal-position/src/Align';
-import Component from 'bower:aui-component/src/Component';
-import EventHandler from 'bower:metaljs/src/events/EventHandler';
 import ComponentRegistry from 'bower:metaljs/src/component/ComponentRegistry';
+import EventHandler from 'bower:metaljs/src/events/EventHandler';
+import SoyComponent from 'bower:metaljs/src/soy/SoyComponent';
 import './Tooltip.soy';
 
 /**
  * Tooltip component.
  */
-class Tooltip extends Component {
+class Tooltip extends SoyComponent {
 	/**
 	 * @inheritDoc
 	 */
@@ -177,7 +177,9 @@ class Tooltip extends Component {
 	}
 
 	/**
-	 * @inheritDoc
+	 * Attribute synchronization logic for `visible` attribute.
+	 * Updates the element's opacity valye according to its visibility, and realigns
+	 * the tooltip as needed.
 	 */
 	syncVisible(visible) {
 		this.element.style.opacity = visible ? 1 : '';

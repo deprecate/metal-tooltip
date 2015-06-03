@@ -1,9 +1,9 @@
 {
-  "name": "aui-tooltip",
+  "name": "alloy-tooltip",
   "version": "0.1.0",
-  "description": "AlloyUI's tooltip component",
+  "description": "Alloy's tooltip component",
   "license": "MIT",
-  "repository": "alloyui/tooltip",
+  "repository": "metal/alloy-tooltip",
   "author": {
     "name": "Maira Bello",
     "email": "maira.araujo@liferay.com"
@@ -15,13 +15,13 @@
     "test": "gulp test"
   },
   "keywords": [
-    "aui",
+    "alloy",
     "alloyui",
+    "metal",
     "metaljs",
     "tooltip"
   ],
   "devDependencies": {
-		"aui-tasks": "alloyui/tasks",
 		"chai": "^2.3.0",
 		"gulp": "^3.8.11",
 		"isparta": "^3.0.3",
@@ -33,6 +33,7 @@
 		"karma-mocha": "^0.1.10",
 		"karma-source-map-support": "^1.0.0",
 		"metaljs": "^0.1.7",
+		"metal-tasks": "metal/metal-tasks",
 		"mocha": "^2.2.5"
   }
 }

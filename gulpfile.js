@@ -1,8 +1,9 @@
 'use strict';
 
-var auiTasks = require('aui-tasks');
+var metalTasks = require('metal-tasks');
 
-auiTasks({
+metalTasks({
 	bundleCssFileName: 'tooltip.css',
-	bundleFileName: 'tooltip.js'
+	bundleFileName: 'tooltip.js',
+	globalName: 'alloy'
 });
