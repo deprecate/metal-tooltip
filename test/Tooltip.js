@@ -1,7 +1,7 @@
 'use strict';
 
-import async from 'bower:metaljs/src/async/async';
-import dom from 'bower:metaljs/src/dom/dom';
+import async from 'bower:metal/src/async/async';
+import dom from 'bower:metal/src/dom/dom';
 import Tooltip from '../src/Tooltip';
 
 var tooltip;

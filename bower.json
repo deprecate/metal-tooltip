@@ -13,7 +13,7 @@
   "keywords": [
     "alloy",
     "alloyui",
-    "metaljs",
+    "metal",
     "tooltip"
   ],
   "ignore": [
@@ -22,10 +22,10 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "metaljs": "liferay/metal.js#master",
-    "soyutils": "2014.04.22",
+    "metal": "metal/metal.js#master",
+    "metal-jquery-adapter": "metal/metal-jquery-adapter#master",
+    "metal-position": "metal/metal-position#master",
     "bootstrap-sass": "~3.3.4",
-    "metal-position": "eduardolundgren/metal-position#master",
-    "metal-jquery-adapter": "metal/metal-jquery-adapter"
+    "soyutils": "2014.04.22"
   }
 }
