@@ -25,6 +25,7 @@
     "metaljs": "liferay/metal.js#master",
     "soyutils": "2014.04.22",
     "bootstrap-sass": "~3.3.4",
-    "metal-position": "eduardolundgren/metal-position#master"
+    "metal-position": "eduardolundgren/metal-position#master",
+    "metal-jquery-adapter": "metal/metal-jquery-adapter"
   }
 }
