@@ -1,8 +1,8 @@
 'use strict';
 
-var metalTasks = require('metal-tasks');
+var metal = require('gulp-metal');
 
-metalTasks({
+metal.registerTasks({
 	bundleCssFileName: 'tooltip.css',
 	bundleFileName: 'tooltip.js',
 	globalName: 'alloy',

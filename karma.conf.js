@@ -1,5 +1,5 @@
 var isparta = require('isparta');
-var metal = require('metal');
+var metal = require('gulp-metal');
 
 var babelOptions = {
 	resolveModuleSource: metal.renameAlias,
