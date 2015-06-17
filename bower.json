@@ -1,7 +1,7 @@
 {
-  "name": "alloy-tooltip",
+  "name": "crystal-tooltip",
   "version": "0.1.0",
-  "homepage": "https://github.com/metal/alloy-tooltip",
+  "homepage": "https://github.com/metal/crystal-tooltip",
   "authors": [
     "Maira Bello <maira.araujo@liferay.com>"
   ],
@@ -11,8 +11,7 @@
     "es6"
   ],
   "keywords": [
-    "alloy",
-    "alloyui",
+    "crystal",
     "metal",
     "tooltip"
   ],

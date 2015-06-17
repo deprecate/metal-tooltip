@@ -1,9 +1,9 @@
 {
-  "name": "alloy-tooltip",
+  "name": "crystal-tooltip",
   "version": "0.1.0",
   "description": "Alloy's tooltip component",
   "license": "MIT",
-  "repository": "metal/alloy-tooltip",
+  "repository": "metal/crystal-tooltip",
   "author": {
     "name": "Maira Bello",
     "email": "maira.araujo@liferay.com"
@@ -15,8 +15,7 @@
     "test": "gulp test"
   },
   "keywords": [
-    "alloy",
-    "alloyui",
+    "crystal",
     "metal",
     "tooltip"
   ],
