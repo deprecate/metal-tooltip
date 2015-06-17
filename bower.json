@@ -17,6 +17,7 @@
   ],
   "ignore": [
     "*",
+    "!test/**/*",
     "!src/**/*"
   ],
   "license": "MIT",
