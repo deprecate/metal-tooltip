@@ -26,7 +26,7 @@ class Tooltip extends SoyComponent {
 	 */
 	attached() {
 		this.align();
-		this.syncEvents(this.events);
+		this.syncTriggerEvents(this.triggerEvents);
 	}
 
 	/**
@@ -146,13 +146,13 @@ class Tooltip extends SoyComponent {
 	 * @inheritDoc
 	 */
 	syncSelector() {
-		this.syncEvents(this.events);
+		this.syncTriggerEvents(this.triggerEvents);
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	syncEvents(events) {
+	syncTriggerEvents(triggerEvents) {
 		if (!this.inDocument) {
 			return;
 		}
@@ -166,13 +166,13 @@ class Tooltip extends SoyComponent {
 			this.on('mouseenter', this.lock),
 			this.on('mouseleave', this.unlock));
 
-		if (events[0] === events[1]) {
+		if (triggerEvents[0] === triggerEvents[1]) {
 			this.eventHandler_.add(
-				dom.delegate(document, events[0], selector, this.handleToggle.bind(this)));
+				dom.delegate(document, triggerEvents[0], selector, this.handleToggle.bind(this)));
 		} else {
 			this.eventHandler_.add(
-				dom.delegate(document, events[0], selector, this.handleShow.bind(this)),
-				dom.delegate(document, events[1], selector, this.handleHide.bind(this)));
+				dom.delegate(document, triggerEvents[0], selector, this.handleShow.bind(this)),
+				dom.delegate(document, triggerEvents[1], selector, this.handleHide.bind(this)));
 		}
 	}
 
@@ -240,7 +240,7 @@ Tooltip.ATTRS = {
 	 * @type {!Array.<string>}
 	 * @default ['mouseenter', 'mouseleave']
 	 */
-	events: {
+	triggerEvents: {
 		validator: Array.isArray,
 		value: ['mouseenter', 'mouseleave']
 	},

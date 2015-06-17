@@ -82,7 +82,7 @@ describe('Tooltip', function() {
 		tooltip = new Tooltip({
 			content: 'content',
 			delay: [0, 0],
-			events: ['click', 'click'],
+			triggerEvents: ['click', 'click'],
 			selector: '#tooltipTrigger3',
 			visible: false
 		}).render();
@@ -153,7 +153,7 @@ describe('Tooltip', function() {
 		tooltip = new Tooltip({
 			content: 'content',
 			delay: [0, 0],
-			events: ['click', 'click'],
+			triggerEvents: ['click', 'click'],
 			selector: '.trigger'
 		}).render();
 		dom.triggerEvent(trigger, 'click');

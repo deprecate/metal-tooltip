@@ -112,4 +112,5 @@ soy.$$registerDelegateFn(soy.$$getDelTemplateId('Tooltip.inner'), '', 0, Templat
 
 Templates.Tooltip.content.params = ["content"];
 Templates.Tooltip.inner.params = ["content"];
+export default Templates.Tooltip;
 /* jshint ignore:end */
