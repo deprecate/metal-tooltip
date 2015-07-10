@@ -6,6 +6,7 @@ import Align from 'bower:metal-position/src/Align';
 import ComponentRegistry from 'bower:metal/src/component/ComponentRegistry';
 import EventHandler from 'bower:metal/src/events/EventHandler';
 import SoyComponent from 'bower:metal/src/soy/SoyComponent';
+import 'bower:metal/src/dom/events';
 import './Tooltip.soy';
 
 /**
