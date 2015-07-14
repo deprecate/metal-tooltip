@@ -2,6 +2,7 @@
 
 import async from 'bower:metal/src/async/async';
 import dom from 'bower:metal/src/dom/dom';
+import ComponentRegistry from 'bower:metal/src/component/ComponentRegistry';
 import Tooltip from '../src/Tooltip';
 
 var tooltip;
@@ -171,12 +172,10 @@ describe('Tooltip', function() {
 	});
 
 	it('should decorate', function() {
-		var markup = soy.$$getDelegateFn('Tooltip')({
+		var markup = ComponentRegistry.Templates.Tooltip.content({
 			id: 'tooltip',
 			elementClasses: 'bottom',
 			content: 'content'
-		}, null, {
-			renderChildComponents: true
 		});
 
 		dom.append(document.body, markup.content);
