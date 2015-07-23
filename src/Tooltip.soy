@@ -2,11 +2,11 @@
 
 /**
  * This renders the main element.
- * @param elementClasses
+ * @param? elementClasses
  * @param id
  */
 {template .content}
-	<div id="{$id}" class="tooltip component {$elementClasses}">
+	<div id="{$id}" class="tooltip component{$elementClasses ? ' ' + $elementClasses : ''}">
 		<div class="tooltip-arrow"></div>
 		{call .inner data="all" /}
 	</div>
