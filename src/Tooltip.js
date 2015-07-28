@@ -260,7 +260,6 @@ Tooltip.ATTRS = {
 	 * @type {String}
 	 */
 	content: {
-		validator: core.isString
 	},
 
 	/**
