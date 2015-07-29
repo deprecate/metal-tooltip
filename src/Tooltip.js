@@ -73,6 +73,7 @@ class Tooltip extends SoyComponent {
 				this.alignElement = event.delegateTarget;
 			} else {
 				this.visible = false;
+				super.syncVisible(false);
 			}
 		}, this.delay[1]);
 	}
@@ -83,6 +84,7 @@ class Tooltip extends SoyComponent {
 	 * @protected
 	 */
 	handleShow(event) {
+		super.syncVisible(true);
 		this.callAsync_(function() {
 			this.alignElement = event.delegateTarget;
 			this.visible = true;
