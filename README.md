@@ -1,6 +1,6 @@
-# Alloy Tooltip
+# Crystal Tooltip
 
-Alloy's tooltip component.
+Crystal's tooltip component.
 
 ## Setup
 
