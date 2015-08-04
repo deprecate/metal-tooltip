@@ -181,7 +181,7 @@ class Tooltip extends SoyComponent {
 
 	/**
 	 * Attribute synchronization logic for `visible` attribute.
-	 * Updates the element's opacity valye according to its visibility, and realigns
+	 * Updates the element's opacity value according to it's visibility, and realigns
 	 * the tooltip as needed.
 	 */
 	syncVisible(visible) {
