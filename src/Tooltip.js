@@ -64,13 +64,14 @@ class Tooltip extends SoyComponent {
 	 * @protected
 	 */
 	handleHide(event) {
-		var interactingWithDifferentTarget = event.delegateTarget && (event.delegateTarget !== this.alignElement);
+		var delegateTarget = event.delegateTarget;
+		var interactingWithDifferentTarget = delegateTarget && (delegateTarget !== this.alignElement);
 		this.callAsync_(function() {
 			if (this.locked_) {
 				return;
 			}
 			if (interactingWithDifferentTarget) {
-				this.alignElement = event.delegateTarget;
+				this.alignElement = delegateTarget;
 			} else {
 				this.visible = false;
 				super.syncVisible(false);
@@ -84,9 +85,10 @@ class Tooltip extends SoyComponent {
 	 * @protected
 	 */
 	handleShow(event) {
+		var delegateTarget = event.delegateTarget;
 		super.syncVisible(true);
 		this.callAsync_(function() {
-			this.alignElement = event.delegateTarget;
+			this.alignElement = delegateTarget;
 			this.visible = true;
 		}, this.delay[0]);
 	}
