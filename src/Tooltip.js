@@ -126,13 +126,6 @@ class Tooltip extends SoyComponent {
 	/**
 	 * @inheritDoc
 	 */
-	renderInternal() {
-		super.renderInternal();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	syncAlignElement(alignElement, prevAlignElement) {
 		if (prevAlignElement) {
 			alignElement.removeAttribute('aria-describedby');
