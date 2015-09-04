@@ -126,6 +126,29 @@ describe('Tooltip', function() {
 		}, 25);
 	});
 
+	it('should set "aria-describedBy" on the current "alignElement"', function(done) {
+		dom.enterDocument('<div id="trigger">trigger</div>');
+		var trigger = dom.toElement('#trigger');
+
+		tooltip = new Tooltip({
+			content: 'content',
+			delay: [0, 0],
+			triggerEvents: ['click', 'click'],
+			selector: '#trigger',
+			visible: false
+		}).render();
+		dom.triggerEvent(trigger, 'click');
+		tooltip.once('attrsChanged', function() {
+			assert.strictEqual(tooltip.id, trigger.getAttribute('aria-describedBy'));
+			dom.triggerEvent(trigger, 'click');
+			tooltip.once('attrsChanged', function() {
+				assert.ok(!trigger.hasAttribute('aria-describedBy'));
+				dom.exitDocument(trigger);
+				done();
+			});
+		});
+	});
+
 	it('should remove listeners when dettached', function(done) {
 		dom.enterDocument('<div id="tooltipTrigger5">trigger</div>');
 		var trigger = dom.toElement('#tooltipTrigger5');

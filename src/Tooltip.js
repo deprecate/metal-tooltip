@@ -133,9 +133,19 @@ class Tooltip extends SoyComponent {
 	/**
 	 * @inheritDoc
 	 */
-	syncAlignElement(alignElement) {
-		if (this.inDocument && alignElement) {
-			Tooltip.Align.align(this.element, alignElement, this.position);
+	syncAlignElement(alignElement, prevAlignElement) {
+		if (prevAlignElement) {
+			alignElement.removeAttribute('aria-describedby');
+		}
+		if (alignElement) {
+			if (this.visible) {
+				alignElement.setAttribute('aria-describedby', this.id);
+			} else {
+				alignElement.removeAttribute('aria-describedby');
+			}
+			if (this.inDocument) {
+				Tooltip.Align.align(this.element, alignElement, this.position);
+			}
 		}
 	}
 

@@ -6,7 +6,7 @@
  * @param id
  */
 {template .content}
-	<div id="{$id}" class="tooltip component{$elementClasses ? ' ' + $elementClasses : ''}">
+	<div id="{$id}" class="tooltip component{$elementClasses ? ' ' + $elementClasses : ''}" role="tooltip">
 		<div class="tooltip-arrow"></div>
 		{call .inner data="all" /}
 	</div>
