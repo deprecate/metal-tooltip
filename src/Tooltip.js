@@ -49,7 +49,7 @@ class Tooltip extends SoyComponent {
 	}
 
 	/**
-	 * @param {Function} fn
+	 * @param {!function()} fn
 	 * @param {number} delay
 	 * @private
 	 */
@@ -60,7 +60,7 @@ class Tooltip extends SoyComponent {
 
 	/**
 	 * Handles hide event triggered by `events`.
-	 * @param {Event} event
+	 * @param {!Event} event
 	 * @protected
 	 */
 	handleHide(event) {
@@ -81,7 +81,7 @@ class Tooltip extends SoyComponent {
 
 	/**
 	 * Handles show event triggered by `events`.
-	 * @param {Event} event
+	 * @param {!Event} event
 	 * @protected
 	 */
 	handleShow(event) {
@@ -95,7 +95,7 @@ class Tooltip extends SoyComponent {
 
 	/**
 	 * Handles toggle event triggered by `events`.
-	 * @param {Event} event
+	 * @param {!Event} event
 	 * @protected
 	 */
 	handleToggle(event) {
@@ -108,7 +108,7 @@ class Tooltip extends SoyComponent {
 
 	/**
 	 * Locks tooltip visibility.
-	 * @param {Event} event
+	 * @param {!Event} event
 	 */
 	lock() {
 		this.locked_ = true;
@@ -116,7 +116,7 @@ class Tooltip extends SoyComponent {
 
 	/**
 	 * Unlocks tooltip visibility.
-	 * @param {Event} event
+	 * @param {!Event} event
 	 */
 	unlock(event) {
 		this.locked_ = false;
@@ -124,7 +124,9 @@ class Tooltip extends SoyComponent {
 	}
 
 	/**
-	 * @inheritDoc
+	 * Attribute synchronization logic for `alignElement` attribute.
+	 * @param {Element} alignElement
+	 * @param {Element} prevAlignElement
 	 */
 	syncAlignElement(alignElement, prevAlignElement) {
 		if (prevAlignElement) {
@@ -143,7 +145,8 @@ class Tooltip extends SoyComponent {
 	}
 
 	/**
-	 * @inheritDoc
+	 * Attribute synchronization logic for `position` attribute.
+	 * @param {Align.Top|Align.Right|Align.Bottom|Align.Left} position
 	 */
 	syncPosition(position) {
 		this.updatePositionCSS(position);
@@ -151,14 +154,15 @@ class Tooltip extends SoyComponent {
 	}
 
 	/**
-	 * @inheritDoc
+	 * Attribute synchronization logic for `selector` attribute.
 	 */
 	syncSelector() {
 		this.syncTriggerEvents(this.triggerEvents);
 	}
 
 	/**
-	 * @inheritDoc
+	 * Attribute synchronization logic for `triggerEvents` attribute.
+	 * @param {!Array<string>} triggerEvents
 	 */
 	syncTriggerEvents(triggerEvents) {
 		if (!this.inDocument) {
@@ -188,6 +192,7 @@ class Tooltip extends SoyComponent {
 	 * Attribute synchronization logic for `visible` attribute.
 	 * Updates the element's opacity value according to it's visibility, and realigns
 	 * the tooltip as needed.
+	 * @param {boolean} visible
 	 */
 	syncVisible(visible) {
 		this.element.style.opacity = visible ? 1 : '';
@@ -214,14 +219,14 @@ Tooltip.Align = Align;
 /**
  * Default tooltip elementClasses.
  * @default tooltip
- * @type {String}
+ * @type {string}
  * @static
  */
 Tooltip.ELEMENT_CLASSES = 'tooltip';
 
 /**
  * Tooltip attrbutes definition.
- * @type {Object}
+ * @type {!Object}
  * @static
  */
 Tooltip.ATTRS = {
@@ -235,7 +240,7 @@ Tooltip.ATTRS = {
 
 	/**
 	 * Delay showing and hiding the tooltip (ms).
-	 * @type {!Array.<number>}
+	 * @type {!Array<number>}
 	 * @default [ 500, 250 ]
 	 */
 	delay: {
@@ -245,7 +250,7 @@ Tooltip.ATTRS = {
 
 	/**
 	 * Trigger events used to bind handlers to show and hide tooltip.
-	 * @type {!Array.<string>}
+	 * @type {!Array<string>}
 	 * @default ['mouseenter', 'mouseleave']
 	 */
 	triggerEvents: {
@@ -264,7 +269,7 @@ Tooltip.ATTRS = {
 
 	/**
 	 * Content to be placed inside tooltip.
-	 * @type {String}
+	 * @type {string}
 	 */
 	content: {
 	},
