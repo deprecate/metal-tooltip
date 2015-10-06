@@ -197,7 +197,6 @@ describe('Tooltip', function() {
 	it('should decorate', function() {
 		var markup = ComponentRegistry.Templates.Tooltip.content({
 			id: 'tooltip',
-			elementClasses: 'bottom',
 			content: 'content'
 		});
 

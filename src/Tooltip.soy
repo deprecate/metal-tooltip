@@ -10,7 +10,7 @@
 {template .content}
 	{let $positionClasses: ['top', 'right', 'bottom', 'left'] /}
 	{let $positionClass: isNonnull($position) ? $positionClasses[$position] : 'bottom' /}
-	<div id="{$id}" class="tooltip component{$elementClasses ? ' ' + $elementClasses : ''}" role="tooltip">
+	<div id="{$id}" class="tooltip component {$positionClass}{$elementClasses ? ' ' + $elementClasses : ''}" role="tooltip">
 		<div class="tooltip-arrow"></div>
 		{call .inner data="all" /}
 	</div>
