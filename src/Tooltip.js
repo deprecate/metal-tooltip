@@ -8,6 +8,16 @@ import './Tooltip.soy';
  * Tooltip component.
  */
 class Tooltip extends TooltipBase {
+	/**
+	 * Attribute synchronization logic for `visible` attribute. Updates the
+	 * element's opacity, since bootstrap uses opacity instead of display
+	 * for tooltip visibility.
+	 * @param {boolean} visible
+	 */
+	syncVisible(visible) {
+		super.syncVisible(visible);
+		this.element.style.opacity = visible ? 1 : '';
+	}
 }
 
 /**

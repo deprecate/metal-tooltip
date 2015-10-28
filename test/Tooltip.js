@@ -37,6 +37,19 @@ describe('Tooltip', function() {
 		});
 	});
 
+	it('should set opacity to 1 when tooltip becomes visible', function(done) {
+		tooltip = new Tooltip({
+			visible: false
+		}).render();
+		assert.notStrictEqual('1', tooltip.element.style.opacity);
+
+		tooltip.visible = true;
+		tooltip.once('attrsSynced', function() {
+			assert.strictEqual('1', tooltip.element.style.opacity);
+			done();
+		});
+	});
+
 	it('should decorate', function() {
 		var markup = ComponentRegistry.Templates.Tooltip.content({
 			id: 'tooltip',
