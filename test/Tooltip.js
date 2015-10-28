@@ -149,6 +149,40 @@ describe('Tooltip', function() {
 		});
 	});
 
+	it('should add css class according to tooltip position', function(done) {
+		dom.enterDocument('<div id="trigger">trigger</div>');
+		var trigger = dom.toElement('#trigger');
+
+		tooltip = new Tooltip({
+			content: 'content',
+			position: Tooltip.Align.Bottom,
+			selector: '#trigger'
+		}).render();
+		dom.triggerEvent(trigger, 'mouseover');
+
+		tooltip.once('attrsSynced', function() {
+			assert.ok(dom.hasClass(tooltip.element, 'bottom'));
+			done();
+		});
+	});
+
+	it('should add css class according to tooltip final position even when different from attr', function() {
+		dom.enterDocument('<div id="trigger" style="width: 20px; height: 20px; position: absolute; top: 0;">trigger</div>');
+		var trigger = dom.toElement('#trigger');
+
+		tooltip = new Tooltip({
+			content: 'content',
+			position: Tooltip.Align.Top,
+			selector: '#trigger'
+		}).render();
+		dom.triggerEvent(trigger, 'mouseover');
+
+		tooltip.once('attrsSynced', function() {
+			assert.ok(dom.hasClass(tooltip.element, 'right'));
+			done();
+		});
+	});
+
 	it('should remove listeners when dettached', function(done) {
 		dom.enterDocument('<div id="tooltipTrigger5">trigger</div>');
 		var trigger = dom.toElement('#tooltipTrigger5');

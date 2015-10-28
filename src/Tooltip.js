@@ -139,7 +139,8 @@ class Tooltip extends SoyComponent {
 				alignElement.removeAttribute('aria-describedby');
 			}
 			if (this.inDocument) {
-				Tooltip.Align.align(this.element, alignElement, this.position);
+				var finalPosition = Tooltip.Align.align(this.element, alignElement, this.position);
+				this.updatePositionCSS(finalPosition);
 			}
 		}
 	}
@@ -149,7 +150,6 @@ class Tooltip extends SoyComponent {
 	 * @param {Align.Top|Align.Right|Align.Bottom|Align.Left} position
 	 */
 	syncPosition(position) {
-		this.updatePositionCSS(position);
 		this.syncAlignElement(this.alignElement);
 	}
 
