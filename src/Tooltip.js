@@ -15,8 +15,8 @@ class Tooltip extends TooltipBase {
 	 * @param {boolean} visible
 	 */
 	syncVisible(visible) {
-		super.syncVisible(visible);
 		this.element.style.opacity = visible ? 1 : '';
+		super.syncVisible(visible);
 	}
 }
 
