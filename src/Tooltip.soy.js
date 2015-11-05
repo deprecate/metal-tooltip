@@ -1,6 +1,10 @@
 /* jshint ignore:start */
+import Component from 'bower:metal/src/component/Component';
 import ComponentRegistry from 'bower:metal/src/component/ComponentRegistry';
-var Templates = ComponentRegistry.Templates;
+import SoyAop from 'bower:metal/src/soy/SoyAop';
+import SoyRenderer from 'bower:metal/src/soy/SoyRenderer';
+import SoyTemplates from 'bower:metal/src/soy/SoyTemplates';
+var Templates = SoyTemplates.get();
 // This file was automatically generated from Tooltip.soy.
 // Please don't edit this file by hand.
 
@@ -46,5 +50,14 @@ if (goog.DEBUG) {
 
 Templates.Tooltip.content.params = ["id"];
 Templates.Tooltip.inner.params = ["content","id"];
-export default Templates.Tooltip;
+
+class Tooltip extends Component {
+  static setImpl(ctor) {
+    ComponentRegistry.register(ctor, 'Tooltip');
+  }
+}
+Tooltip.RENDERER = SoyRenderer;
+Tooltip.setImpl(Tooltip);
+SoyAop.registerTemplates('Tooltip');
+export default Tooltip;
 /* jshint ignore:end */

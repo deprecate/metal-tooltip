@@ -3,8 +3,9 @@
 import core from 'bower:metal/src/core';
 import dom from 'bower:metal/src/dom/dom';
 import Align from 'bower:metal-position/src/Align';
+import Component from 'bower:metal/src/component/Component';
 import EventHandler from 'bower:metal/src/events/EventHandler';
-import SoyComponent from 'bower:metal/src/soy/SoyComponent';
+import SoyRenderer from 'bower:metal/src/soy/SoyRenderer';
 import 'bower:metal/src/dom/events';
 
 /**
@@ -13,7 +14,7 @@ import 'bower:metal/src/dom/events';
  * between components. The Tooltip component itself extends from this, as does
  * the crystal Popover component, which can be accessed at metal/crystal-popover.
  */
-class TooltipBase extends SoyComponent {
+class TooltipBase extends Component {
 	/**
 	 * @inheritDoc
 	 */
@@ -280,5 +281,7 @@ TooltipBase.ATTRS = {
  * @static
  */
 TooltipBase.PositionClasses = ['top', 'right', 'bottom', 'left'];
+
+TooltipBase.RENDERER = SoyRenderer;
 
 export default TooltipBase;

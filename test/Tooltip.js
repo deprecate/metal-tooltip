@@ -2,7 +2,7 @@
 
 import async from 'bower:metal/src/async/async';
 import dom from 'bower:metal/src/dom/dom';
-import ComponentRegistry from 'bower:metal/src/component/ComponentRegistry';
+import SoyTemplates from 'bower:metal/src/soy/SoyTemplates';
 import Tooltip from '../src/Tooltip';
 
 var tooltip;
@@ -51,7 +51,7 @@ describe('Tooltip', function() {
 	});
 
 	it('should decorate', function() {
-		var markup = ComponentRegistry.Templates.Tooltip.content({
+		var markup = SoyTemplates.get('Tooltip', 'content')({
 			id: 'tooltip',
 			content: 'content'
 		});

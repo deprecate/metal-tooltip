@@ -35,6 +35,6 @@ Tooltip.Align = TooltipBase.Align;
  */
 Tooltip.ELEMENT_CLASSES = 'tooltip';
 
-ComponentRegistry.register('Tooltip', Tooltip);
+ComponentRegistry.register(Tooltip);
 
 export default Tooltip;
