@@ -76,7 +76,7 @@ class TooltipBase extends Component {
 				this.alignElement = delegateTarget;
 			} else {
 				this.visible = false;
-				super.syncVisible(false);
+				this.syncVisible(false);
 			}
 		}, this.delay[1]);
 	}
