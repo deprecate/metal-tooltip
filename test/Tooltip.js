@@ -67,4 +67,24 @@ describe('Tooltip', function() {
 
 		assert.strictEqual(tooltip.element.outerHTML, outerHTML);
 	});
+
+	it('should get the content from the DOM', function(done) {
+		dom.enterDocument('<div id="tooltipTrigger2" data-title="title"></div>');
+		var trigger = dom.toElement('#tooltipTrigger2');
+
+		tooltip = new Tooltip({
+			selector: '#tooltipTrigger2',
+			visible: false
+		}).render();
+
+		dom.triggerEvent(trigger, 'mouseover');
+		tooltip.once('attrsSynced', function() {
+			tooltip.once('attrsSynced', function() {
+				var innerElement = tooltip.element.querySelector('.tooltip-inner');
+				assert.strictEqual('title', innerElement.innerHTML);
+				dom.exitDocument(trigger);
+				done();
+			});
+		});
+	});
 });
