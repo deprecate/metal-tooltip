@@ -12,12 +12,23 @@
 <body>
 	<h1>Tooltip</h1>
 	<button type="button" id="TooltipButton">Tooltip Button</button>
+
+	<h2>Tooltips from data-title</h2>
+	<button type="button" data-title="Data Title 1">Data Title 1</button>
+	<button type="button" data-title="Data Title 2">Data Title 2</button>
 	<script type="text/javascript">
 		window.tooltip = new crystal.Tooltip({
 			content: 'My cool tooltip',
 			delay: [300, 150],
 			elementClasses: 'fade',
 			selector: '#TooltipButton',
+			visible: false
+		}).render();
+
+		new crystal.Tooltip({
+			delay: [300, 150],
+			elementClasses: 'fade',
+			selector: '[data-title]',
 			visible: false
 		}).render();
 	</script>
