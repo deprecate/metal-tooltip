@@ -1,6 +1,5 @@
 /* jshint ignore:start */
 import Component from 'bower:metal/src/component/Component';
-import ComponentRegistry from 'bower:metal/src/component/ComponentRegistry';
 import SoyAop from 'bower:metal/src/soy/SoyAop';
 import SoyRenderer from 'bower:metal/src/soy/SoyRenderer';
 import SoyTemplates from 'bower:metal/src/soy/SoyTemplates';
@@ -51,13 +50,8 @@ if (goog.DEBUG) {
 Templates.Tooltip.content.params = ["id"];
 Templates.Tooltip.inner.params = ["content","id"];
 
-class Tooltip extends Component {
-  static setImpl(ctor) {
-    ComponentRegistry.register(ctor, 'Tooltip');
-  }
-}
+class Tooltip extends Component {}
 Tooltip.RENDERER = SoyRenderer;
-Tooltip.setImpl(Tooltip);
 SoyAop.registerTemplates('Tooltip');
 export default Tooltip;
 /* jshint ignore:end */

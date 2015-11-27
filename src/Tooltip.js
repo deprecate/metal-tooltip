@@ -1,6 +1,5 @@
 'use strict';
 
-import ComponentRegistry from 'bower:metal/src/component/ComponentRegistry';
 import TooltipBase from './TooltipBase';
 import './Tooltip.soy';
 
@@ -34,7 +33,5 @@ Tooltip.Align = TooltipBase.Align;
  * @static
  */
 Tooltip.ELEMENT_CLASSES = 'tooltip';
-
-ComponentRegistry.register(Tooltip);
 
 export default Tooltip;
