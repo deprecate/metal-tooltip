@@ -2,7 +2,7 @@
   "name": "crystal-tooltip",
   "version": "0.1.0",
   "description": "Alloy's tooltip component",
-  "license": "MIT",
+  "license": "BSD",
   "repository": "metal/crystal-tooltip",
   "author": {
     "name": "Maira Bello",
