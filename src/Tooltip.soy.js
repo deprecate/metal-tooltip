@@ -41,14 +41,14 @@ if (goog.DEBUG) {
  * @suppress {checkTypes}
  */
 Templates.Tooltip.inner = function(opt_data, opt_ignored, opt_ijData) {
-  return soydata.VERY_UNSAFE.ordainSanitizedHtml('<section id="' + soy.$$escapeHtmlAttribute(opt_data.id) + '-inner" class="tooltip-inner">' + soy.$$escapeHtml(opt_data.content ? opt_data.content : '') + '</section>');
+  return soydata.VERY_UNSAFE.ordainSanitizedHtml('<section id="' + soy.$$escapeHtmlAttribute(opt_data.id) + '-inner" class="tooltip-inner">' + soy.$$escapeHtml(opt_data.title ? opt_data.title : '') + '</section>');
 };
 if (goog.DEBUG) {
   Templates.Tooltip.inner.soyTemplateName = 'Templates.Tooltip.inner';
 }
 
 Templates.Tooltip.content.params = ["id"];
-Templates.Tooltip.inner.params = ["content","id"];
+Templates.Tooltip.inner.params = ["title","id"];
 
 class Tooltip extends Component {}
 Tooltip.RENDERER = SoyRenderer;

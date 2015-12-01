@@ -137,7 +137,7 @@ class TooltipBase extends Component {
 		if (alignElement) {
 			var dataTitle = alignElement.getAttribute('data-title');
 			if (dataTitle) {
-				this.content = dataTitle;
+				this.title = dataTitle;
 			}
 			if (this.visible) {
 				alignElement.setAttribute('aria-describedby', this.id);
@@ -261,13 +261,6 @@ TooltipBase.ATTRS = {
 	},
 
 	/**
-	 * Content to be placed inside tooltip.
-	 * @type {string}
-	 */
-	content: {
-	},
-
-	/**
 	 * The position to try alignment. If not possible the best position will be
 	 * found.
 	 * @type {Align.Top|Align.Right|Align.Bottom|Align.Left}
@@ -276,6 +269,13 @@ TooltipBase.ATTRS = {
 	position: {
 		validator: TooltipBase.Align.isValidPosition,
 		value: TooltipBase.Align.Bottom
+	},
+
+	/**
+	 * Content to be placed inside tooltip.
+	 * @type {string}
+	 */
+	title: {
 	}
 };
 

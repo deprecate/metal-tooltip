@@ -19,17 +19,17 @@ describe('Tooltip', function() {
 		assert.strictEqual('', tooltip.element.style.display);
 	});
 
-	it('should render with content', function() {
+	it('should render with title', function() {
 		tooltip = new Tooltip({
-			content: 'content'
+			title: 'content'
 		}).render();
 		var innerElement = tooltip.element.querySelector('.tooltip-inner');
 		assert.strictEqual('content', innerElement.innerHTML);
 	});
 
-	it('should update when content attribute change', function(done) {
+	it('should update when title attribute changes', function(done) {
 		tooltip = new Tooltip().render();
-		tooltip.content = 'content';
+		tooltip.title = 'content';
 		async.nextTick(function() {
 			var innerElement = tooltip.element.querySelector('.tooltip-inner');
 			assert.strictEqual('content', innerElement.innerHTML);
@@ -53,7 +53,7 @@ describe('Tooltip', function() {
 	it('should decorate', function() {
 		var markup = SoyTemplates.get('Tooltip', 'content')({
 			id: 'tooltip',
-			content: 'content'
+			title: 'content'
 		});
 
 		dom.append(document.body, markup.content);
@@ -61,14 +61,14 @@ describe('Tooltip', function() {
 
 		tooltip = new Tooltip({
 			element: '#tooltip',
-			content: 'content',
+			title: 'content',
 			visible: false
 		}).decorate();
 
 		assert.strictEqual(tooltip.element.outerHTML, outerHTML);
 	});
 
-	it('should get the content from the DOM', function(done) {
+	it('should get the title from the DOM', function(done) {
 		dom.enterDocument('<div id="tooltipTrigger2" data-title="title"></div>');
 		var trigger = dom.toElement('#tooltipTrigger2');
 
