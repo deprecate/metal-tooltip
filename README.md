@@ -1,6 +1,6 @@
-# Crystal Tooltip
+# metal-tooltip
 
-Crystal's tooltip component.
+Metal's tooltip component.
 
 ## Setup
 

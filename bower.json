@@ -1,7 +1,7 @@
 {
-  "name": "crystal-tooltip",
+  "name": "metal-tooltip",
   "version": "0.1.0",
-  "homepage": "https://github.com/metal/crystal-tooltip",
+  "homepage": "https://github.com/metal/metal-tooltip",
   "authors": [
     "Maira Bello <maira.araujo@liferay.com>"
   ],
@@ -11,7 +11,6 @@
     "es6"
   ],
   "keywords": [
-    "crystal",
     "metal",
     "tooltip"
   ],

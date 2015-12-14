@@ -1,9 +1,9 @@
 {
-  "name": "crystal-tooltip",
+  "name": "metal-tooltip",
   "version": "0.1.0",
-  "description": "Alloy's tooltip component",
+  "description": "Metal's tooltip component",
   "license": "BSD",
-  "repository": "metal/crystal-tooltip",
+  "repository": "metal/metal-tooltip",
   "author": {
     "name": "Maira Bello",
     "email": "maira.araujo@liferay.com"
@@ -15,7 +15,6 @@
     "test": "gulp test"
   },
   "keywords": [
-    "crystal",
     "metal",
     "tooltip"
   ],
