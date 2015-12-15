@@ -206,7 +206,7 @@ class TooltipBase extends Component {
 	 */
 	updatePositionCSS(position) {
 		dom.removeClasses(this.element, TooltipBase.PositionClasses.join(' '));
-		dom.addClasses(this.element, TooltipBase.PositionClasses[position]);
+		dom.addClasses(this.element, TooltipBase.PositionToClass[position]);
 	}
 }
 
@@ -285,6 +285,13 @@ TooltipBase.ATTRS = {
  * @static
  */
 TooltipBase.PositionClasses = ['top', 'right', 'bottom', 'left'];
+
+/**
+ * A map from each `Align` position to the appropriate tooltip class.
+ * @type {!Array}
+ * @static
+ */
+TooltipBase.PositionToClass = ['top', 'top', 'right', 'bottom', 'bottom', 'bottom', 'left', 'top'];
 
 TooltipBase.RENDERER = SoyRenderer;
 
