@@ -21,7 +21,7 @@ if (typeof Templates.Tooltip == 'undefined') { Templates.Tooltip = {}; }
  * @return {!soydata.SanitizedHtml}
  * @suppress {checkTypes}
  */
-Templates.Tooltip.content = function(opt_data, opt_ignored, opt_ijData) {
+Templates.Tooltip.render = function(opt_data, opt_ignored, opt_ijData) {
   var output = '';
   var positionClasses__soy3 = ['top', 'right', 'bottom', 'left'];
   var positionClass__soy4 = opt_data.position != null ? positionClasses__soy3[opt_data.position] : 'bottom';
@@ -29,7 +29,7 @@ Templates.Tooltip.content = function(opt_data, opt_ignored, opt_ijData) {
   return soydata.VERY_UNSAFE.ordainSanitizedHtml(output);
 };
 if (goog.DEBUG) {
-  Templates.Tooltip.content.soyTemplateName = 'Templates.Tooltip.content';
+  Templates.Tooltip.render.soyTemplateName = 'Templates.Tooltip.render';
 }
 
 
@@ -47,7 +47,7 @@ if (goog.DEBUG) {
   Templates.Tooltip.inner.soyTemplateName = 'Templates.Tooltip.inner';
 }
 
-Templates.Tooltip.content.params = ["id"];
+Templates.Tooltip.render.params = ["id"];
 Templates.Tooltip.inner.params = ["title","id"];
 
 class Tooltip extends Component {}

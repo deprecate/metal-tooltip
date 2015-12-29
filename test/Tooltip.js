@@ -51,7 +51,7 @@ describe('Tooltip', function() {
 	});
 
 	it('should decorate', function() {
-		var markup = SoyTemplates.get('Tooltip', 'content')({
+		var markup = SoyTemplates.get('Tooltip', 'render')({
 			id: 'tooltip',
 			title: 'content'
 		});
