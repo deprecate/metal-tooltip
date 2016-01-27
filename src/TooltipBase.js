@@ -1,12 +1,12 @@
 'use strict';
 
-import core from 'bower:metal/src/core';
-import dom from 'bower:metal/src/dom/dom';
-import Align from 'bower:metal-position/src/Align';
-import Component from 'bower:metal/src/component/Component';
-import EventHandler from 'bower:metal/src/events/EventHandler';
-import SoyRenderer from 'bower:metal/src/soy/SoyRenderer';
-import 'bower:metal/src/dom/events';
+import core from 'metal/src/core';
+import dom from 'metal/src/dom/dom';
+import Align from 'metal-position/src/Align';
+import Component from 'metal/src/component/Component';
+import EventHandler from 'metal/src/events/EventHandler';
+import SoyRenderer from 'metal/src/soy/SoyRenderer';
+import 'metal/src/dom/events';
 
 /**
  * The base class to be shared between components that have tooltip behavior.

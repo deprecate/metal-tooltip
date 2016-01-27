@@ -1,8 +1,8 @@
 'use strict';
 
-import async from 'bower:metal/src/async/async';
-import dom from 'bower:metal/src/dom/dom';
-import SoyTemplates from 'bower:metal/src/soy/SoyTemplates';
+import async from 'metal/src/async/async';
+import dom from 'metal/src/dom/dom';
+import SoyTemplates from 'metal/src/soy/SoyTemplates';
 import Tooltip from '../src/Tooltip';
 
 var tooltip;
