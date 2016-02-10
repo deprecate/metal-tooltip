@@ -35,3 +35,4 @@ Tooltip.Align = TooltipBase.Align;
 Tooltip.ELEMENT_CLASSES = 'tooltip';
 
 export default Tooltip;
+export { Tooltip, TooltipBase };
