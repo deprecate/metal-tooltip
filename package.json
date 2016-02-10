@@ -12,6 +12,7 @@
     "node": ">=0.12.0",
     "npm": ">=3.0.0"
   },
+  "main": "src/Tooltip.js",
   "files": [
     "src",
     "test"
