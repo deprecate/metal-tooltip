@@ -39,6 +39,14 @@ class TooltipBase extends Component {
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	disposeInternal() {
+		super.disposeInternal();
+		clearTimeout(this.delay_);
+	}
+
+	/**
 	 * Aligns the tooltip with the best region around alignElement. The best
 	 * region is defined by clockwise rotation starting from the specified
 	 * `position`. The element is always aligned in the middle of alignElement

@@ -196,4 +196,22 @@ describe('TooltipBase', function() {
 			}, 25);
 		}, 25);
 	});
+
+	it('should not throw error if showing tooltip while component is disposed', function(done) {
+		dom.enterDocument('<div id="tooltipTrigger1">trigger</div>');
+		var trigger = dom.toElement('#tooltipTrigger1');
+
+		tooltip = new TooltipBase({
+			delay: [0, 0],
+			selector: '#tooltipTrigger1',
+			visible: false
+		}).render();
+		dom.triggerEvent(trigger, 'mouseover');
+		tooltip.dispose();
+
+		setTimeout(function() {
+			dom.exitDocument(trigger);
+			done();
+		}, 25);
+	});
 });
