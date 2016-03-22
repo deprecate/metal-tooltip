@@ -1,16 +1,16 @@
 'use strict';
 
+import Soy from 'metal-soy';
 import TooltipBase from './TooltipBase';
-import './Tooltip.soy';
+import templates from './Tooltip.soy';
 
 /**
  * Tooltip component.
  */
 class Tooltip extends TooltipBase {
 	/**
-	 * Attribute synchronization logic for `visible` attribute. Updates the
-	 * element's opacity, since bootstrap uses opacity instead of display
-	 * for tooltip visibility.
+	 * State synchronization logic for `visible`. Updates the element's opacity,
+	 * since bootstrap uses opacity instead of display for tooltip visibility.
 	 * @param {boolean} visible
 	 */
 	syncVisible(visible) {
@@ -18,6 +18,7 @@ class Tooltip extends TooltipBase {
 		super.syncVisible(visible);
 	}
 }
+Soy.register(Tooltip, templates);
 
 /**
  * @inheritDoc
@@ -25,14 +26,6 @@ class Tooltip extends TooltipBase {
  * @static
  */
 Tooltip.Align = TooltipBase.Align;
-
-/**
- * Default tooltip elementClasses.
- * @default tooltip
- * @type {string}
- * @static
- */
-Tooltip.ELEMENT_CLASSES = 'tooltip';
 
 export default Tooltip;
 export { Tooltip, TooltipBase };

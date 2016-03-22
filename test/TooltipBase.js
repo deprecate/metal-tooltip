@@ -3,9 +3,9 @@
 import dom from 'metal-dom';
 import TooltipBase from '../src/TooltipBase';
 
-var tooltip;
-
 describe('TooltipBase', function() {
+	var tooltip;
+
 	afterEach(function() {
 		if (tooltip) {
 			tooltip.dispose();
@@ -108,18 +108,22 @@ describe('TooltipBase', function() {
 			visible: false
 		}).render();
 		dom.triggerEvent(trigger, 'click');
-		tooltip.once('attrsChanged', function() {
-			assert.strictEqual(tooltip.id, trigger.getAttribute('aria-describedBy'));
-			dom.triggerEvent(trigger, 'click');
-			tooltip.once('attrsChanged', function() {
-				assert.ok(!trigger.hasAttribute('aria-describedBy'));
-				dom.exitDocument(trigger);
-				done();
+		tooltip.once('stateChanged', function() {
+			tooltip.once('stateChanged', function() {
+				assert.strictEqual(tooltip.id, trigger.getAttribute('aria-describedBy'));
+				dom.triggerEvent(trigger, 'click');
+				tooltip.once('stateChanged', function() {
+					tooltip.once('stateChanged', function() {
+						assert.ok(!trigger.hasAttribute('aria-describedBy'));
+						dom.exitDocument(trigger);
+						done();
+					});
+				});
 			});
 		});
 	});
 
-	it('should add css class according to tooltip position', function(done) {
+	it('should set alignedPosition equal to position if well aligned to trigger', function(done) {
 		dom.enterDocument('<div id="trigger">trigger</div>');
 		var trigger = dom.toElement('#trigger');
 
@@ -129,14 +133,16 @@ describe('TooltipBase', function() {
 		}).render();
 		dom.triggerEvent(trigger, 'mouseover');
 
-		tooltip.once('attrsSynced', function() {
-			assert.ok(dom.hasClass(tooltip.element, 'bottom'));
-			dom.exitDocument(trigger);
-			done();
+		tooltip.once('stateSynced', function() {
+			tooltip.once('stateSynced', function() {
+				assert.strictEqual(TooltipBase.Align.Bottom, tooltip.alignedPosition);
+				dom.exitDocument(trigger);
+				done();
+			});
 		});
 	});
 
-	it('should add css class according to tooltip final position even when different from attr', function(done) {
+	it('should set alignedPosition to the best found position that aligns well to trigger', function(done) {
 		dom.enterDocument('<div id="trigger" style="width: 20px; height: 20px; position: absolute;">trigger</div>');
 		var trigger = dom.toElement('#trigger');
 
@@ -148,9 +154,12 @@ describe('TooltipBase', function() {
 		tooltip.element.style.height = '30px';
 		dom.triggerEvent(trigger, 'mouseover');
 
-		tooltip.once('attrsSynced', function() {
-			assert.ok(dom.hasClass(tooltip.element, 'right'));
-			done();
+		tooltip.once('stateSynced', function() {
+			tooltip.once('stateSynced', function() {
+				assert.strictEqual(TooltipBase.Align.Right, tooltip.alignedPosition);
+				dom.exitDocument(trigger);
+				done();
+			});
 		});
 	});
 

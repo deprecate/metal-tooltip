@@ -2,7 +2,6 @@
 
 import { async } from 'metal';
 import dom from 'metal-dom';
-import { SoyTemplates } from 'metal-soy';
 import Tooltip from '../src/Tooltip';
 
 var tooltip;
@@ -14,7 +13,7 @@ describe('Tooltip', function() {
 		}
 	});
 
-	it('should render with default attributes', function() {
+	it('should render with default state', function() {
 		tooltip = new Tooltip().render();
 		assert.strictEqual('', tooltip.element.style.display);
 	});
@@ -27,7 +26,7 @@ describe('Tooltip', function() {
 		assert.strictEqual('content', innerElement.innerHTML);
 	});
 
-	it('should update when title attribute changes', function(done) {
+	it('should update when title state changes', function(done) {
 		tooltip = new Tooltip().render();
 		tooltip.title = 'content';
 		async.nextTick(function() {
@@ -44,19 +43,19 @@ describe('Tooltip', function() {
 		assert.notStrictEqual('1', tooltip.element.style.opacity);
 
 		tooltip.visible = true;
-		tooltip.once('attrsSynced', function() {
+		tooltip.once('stateSynced', function() {
 			assert.strictEqual('1', tooltip.element.style.opacity);
 			done();
 		});
 	});
 
 	it('should decorate', function() {
-		var markup = SoyTemplates.get('Tooltip', 'render')({
-			id: 'tooltip',
-			title: 'content'
+		IncrementalDOM.patch(document.body, () => {
+			Tooltip.TEMPLATE({
+				id: 'tooltip',
+				title: 'content'
+			});
 		});
-
-		dom.append(document.body, markup.content);
 		var outerHTML = document.getElementById('tooltip').outerHTML;
 
 		tooltip = new Tooltip({
@@ -78,13 +77,13 @@ describe('Tooltip', function() {
 		}).render();
 
 		dom.triggerEvent(trigger, 'mouseover');
-		tooltip.once('attrsSynced', function() {
-			tooltip.once('attrsSynced', function() {
+		tooltip.on('stateSynced', function(data) {
+			if (data.changes.title) {
 				var innerElement = tooltip.element.querySelector('.tooltip-inner');
 				assert.strictEqual('title', innerElement.innerHTML);
 				dom.exitDocument(trigger);
 				done();
-			});
+			}
 		});
 	});
 });

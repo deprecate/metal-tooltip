@@ -1,55 +1,71 @@
 /* jshint ignore:start */
-import Component from 'metal-component';
-import { SoyAop, SoyRenderer, SoyTemplates } from 'metal-soy';
-var Templates = SoyTemplates.get();
+import Component from 'metal-component/src/Component';
+import Soy from 'metal-soy/src/Soy';
+var templates;
+goog.loadModule(function(exports) {
+
 // This file was automatically generated from Tooltip.soy.
 // Please don't edit this file by hand.
 
 /**
- * @fileoverview Templates in namespace Templates.Tooltip.
+ * @fileoverview Templates in namespace Tooltip.
+ * @public
  */
 
-if (typeof Templates.Tooltip == 'undefined') { Templates.Tooltip = {}; }
+goog.module('Tooltip.incrementaldom');
+
+var soy = goog.require('soy');
+var soydata = goog.require('soydata');
+/** @suppress {extraRequire} */
+goog.require('goog.i18n.bidi');
+/** @suppress {extraRequire} */
+goog.require('goog.asserts');
+var IncrementalDom = goog.require('incrementaldom');
+var ie_open = IncrementalDom.elementOpen;
+var ie_close = IncrementalDom.elementClose;
+var ie_void = IncrementalDom.elementVoid;
+var ie_open_start = IncrementalDom.elementOpenStart;
+var ie_open_end = IncrementalDom.elementOpenEnd;
+var itext = IncrementalDom.text;
+var iattr = IncrementalDom.attr;
 
 
 /**
- * @param {Object.<string, *>=} opt_data
+ * @param {Object<string, *>=} opt_data
  * @param {(null|undefined)=} opt_ignored
- * @param {Object.<string, *>=} opt_ijData
- * @return {!soydata.SanitizedHtml}
+ * @param {Object<string, *>=} opt_ijData
+ * @return {void}
  * @suppress {checkTypes}
  */
-Templates.Tooltip.render = function(opt_data, opt_ignored, opt_ijData) {
-  var output = '';
-  var positionClasses__soy3 = ['top', 'right', 'bottom', 'left'];
-  var positionClass__soy4 = opt_data.position != null ? positionClasses__soy3[opt_data.position] : 'bottom';
-  output += '<div id="' + soy.$$escapeHtmlAttribute(opt_data.id) + '" class="tooltip component ' + soy.$$escapeHtmlAttribute(positionClass__soy4) + soy.$$escapeHtmlAttribute(opt_data.elementClasses ? ' ' + opt_data.elementClasses : '') + '" role="tooltip"><div class="tooltip-arrow"></div>' + Templates.Tooltip.inner(opt_data, null, opt_ijData) + '</div>';
-  return soydata.VERY_UNSAFE.ordainSanitizedHtml(output);
-};
+function $render(opt_data, opt_ignored, opt_ijData) {
+  var positionClasses__soy3 = ['top', 'top', 'right', 'bottom', 'bottom', 'bottom', 'left', 'top'];
+  var currentPosition__soy4 = opt_data.alignedPosition != null ? opt_data.alignedPosition : opt_data.position;
+  var positionClass__soy5 = currentPosition__soy4 != null ? positionClasses__soy3[currentPosition__soy4] : 'bottom';
+  ie_open('div', null, null,
+      'id', opt_data.id,
+      'class', 'tooltip component ' + positionClass__soy5 + (opt_data.elementClasses ? ' ' + opt_data.elementClasses : ''),
+      'role', 'tooltip');
+    ie_void('div', null, null,
+        'class', 'tooltip-arrow');
+    ie_open('section', null, null,
+        'class', 'tooltip-inner');
+      itext((goog.asserts.assert((opt_data.title ? opt_data.title : '') != null), opt_data.title ? opt_data.title : ''));
+    ie_close('section');
+  ie_close('div');
+}
+exports.render = $render;
 if (goog.DEBUG) {
-  Templates.Tooltip.render.soyTemplateName = 'Templates.Tooltip.render';
+  $render.soyTemplateName = 'Tooltip.render';
 }
 
+exports.render.params = ["alignedPosition","elementClasses","id","position","title"];
+templates = exports;
+return exports;
 
-/**
- * @param {Object.<string, *>=} opt_data
- * @param {(null|undefined)=} opt_ignored
- * @param {Object.<string, *>=} opt_ijData
- * @return {!soydata.SanitizedHtml}
- * @suppress {checkTypes}
- */
-Templates.Tooltip.inner = function(opt_data, opt_ignored, opt_ijData) {
-  return soydata.VERY_UNSAFE.ordainSanitizedHtml('<section id="' + soy.$$escapeHtmlAttribute(opt_data.id) + '-inner" class="tooltip-inner">' + soy.$$escapeHtml(opt_data.title ? opt_data.title : '') + '</section>');
-};
-if (goog.DEBUG) {
-  Templates.Tooltip.inner.soyTemplateName = 'Templates.Tooltip.inner';
-}
-
-Templates.Tooltip.render.params = ["id"];
-Templates.Tooltip.inner.params = ["title","id"];
+});
 
 class Tooltip extends Component {}
-Tooltip.RENDERER = SoyRenderer;
-SoyAop.registerTemplates('Tooltip');
-export default Tooltip;
+Soy.register(Tooltip, templates);
+export default templates;
+export { Tooltip, templates };
 /* jshint ignore:end */

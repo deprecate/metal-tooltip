@@ -26,16 +26,15 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "closure-templates": "20140422.0.0",
     "metal": "^1.0.0-rc",
-    "metal-component": "^1.0.0-rc",
+    "metal-component": "metal/metal-component#master",
     "metal-dom": "^1.0.0-rc",
     "metal-events": "^1.0.0-rc",
     "metal-position": "^1.0.0-rc",
-    "metal-soy": "^1.0.0-rc"
+    "metal-soy": "metal/metal-soy#master"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
-		"gulp-metal": "^0.14.0"
+		"gulp-metal": "^1.0.0"
   }
 }

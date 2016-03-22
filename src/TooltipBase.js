@@ -5,7 +5,6 @@ import dom from 'metal-dom';
 import { Align } from 'metal-position';
 import Component from 'metal-component';
 import { EventHandler } from 'metal-events';
-import { SoyRenderer } from 'metal-soy';
 
 /**
  * The base class to be shared between components that have tooltip behavior.
@@ -133,7 +132,7 @@ class TooltipBase extends Component {
 	}
 
 	/**
-	 * Attribute synchronization logic for `alignElement` attribute.
+	 * State synchronization logic for `alignElement`.
 	 * @param {Element} alignElement
 	 * @param {Element} prevAlignElement
 	 */
@@ -152,28 +151,27 @@ class TooltipBase extends Component {
 				alignElement.removeAttribute('aria-describedby');
 			}
 			if (this.inDocument) {
-				var finalPosition = TooltipBase.Align.align(this.element, alignElement, this.position);
-				this.updatePositionCSS(finalPosition);
+				this.alignedPosition = TooltipBase.Align.align(this.element, alignElement, this.position);
 			}
 		}
 	}
 
 	/**
-	 * Attribute synchronization logic for `position` attribute.
+	 * State synchronization logic for `position`.
 	 */
 	syncPosition() {
 		this.syncAlignElement(this.alignElement);
 	}
 
 	/**
-	 * Attribute synchronization logic for `selector` attribute.
+	 * State synchronization logic for `selector`.
 	 */
 	syncSelector() {
 		this.syncTriggerEvents(this.triggerEvents);
 	}
 
 	/**
-	 * Attribute synchronization logic for `triggerEvents` attribute.
+	 * State synchronization logic for `triggerEvents`.
 	 * @param {!Array<string>} triggerEvents
 	 */
 	syncTriggerEvents(triggerEvents) {
@@ -201,19 +199,10 @@ class TooltipBase extends Component {
 	}
 
 	/**
-	 * Attribute synchronization logic for `visible` attribute. Realigns the tooltip.
+	 * State synchronization logic for `visible`. Realigns the tooltip.
 	 */
 	syncVisible() {
 		this.align();
-	}
-
-	/**
-	 * Updates the css class for the current position.
-	 * @param {number} position
-	 */
-	updatePositionCSS(position) {
-		dom.removeClasses(this.element, TooltipBase.PositionClasses.join(' '));
-		dom.addClasses(this.element, TooltipBase.PositionToClass[position]);
 	}
 }
 
@@ -225,11 +214,19 @@ class TooltipBase extends Component {
 TooltipBase.Align = Align;
 
 /**
- * TooltipBase attrbutes definition.
+ * TooltipBase state definition.
  * @type {!Object}
  * @static
  */
-TooltipBase.ATTRS = {
+TooltipBase.STATE = {
+	/**
+	 * The current position of the tooltip after being aligned via `Align.align`.
+	 * @type {number}
+	 */
+	alignedPosition: {
+		validator: TooltipBase.Align.isValidPosition
+	},
+
 	/**
 	 * Element to align tooltip with.
 	 * @type {Element}
@@ -270,7 +267,7 @@ TooltipBase.ATTRS = {
 	/**
 	 * The position to try alignment. If not possible the best position will be
 	 * found.
-	 * @type {Align.Top|Align.Right|Align.Bottom|Align.Left}
+	 * @type {number}
 	 * @default Align.Bottom
 	 */
 	position: {
@@ -292,14 +289,5 @@ TooltipBase.ATTRS = {
  * @static
  */
 TooltipBase.PositionClasses = ['top', 'right', 'bottom', 'left'];
-
-/**
- * A map from each `Align` position to the appropriate tooltip class.
- * @type {!Array}
- * @static
- */
-TooltipBase.PositionToClass = ['top', 'top', 'right', 'bottom', 'bottom', 'bottom', 'left', 'top'];
-
-TooltipBase.RENDERER = SoyRenderer;
 
 export default TooltipBase;
