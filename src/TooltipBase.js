@@ -35,6 +35,7 @@ class TooltipBase extends Component {
 	 * @inheritDoc
 	 */
 	detached() {
+		this.returnsTitleToPrevAlignElement_(this.alignElement);
 		this.eventHandler_.removeAllListeners();
 	}
 
@@ -68,6 +69,20 @@ class TooltipBase extends Component {
 	}
 
 	/**
+	 * Get the title attribute from the 'alignElement'.
+	 * @param {Element} alignElement
+	 * @return {!String}
+	 */
+	getTitle_(alignElement) {
+		var title = alignElement.getAttribute('title');
+		if (title) {
+			alignElement.setAttribute('data-original-title', title);
+			alignElement.removeAttribute('title');
+		}
+		return title;
+	}
+
+	/**
 	 * Handles hide event triggered by `events`.
 	 * @param {!Event} event
 	 * @protected
@@ -75,6 +90,7 @@ class TooltipBase extends Component {
 	handleHide(event) {
 		var delegateTarget = event.delegateTarget;
 		var interactingWithDifferentTarget = delegateTarget && (delegateTarget !== this.alignElement);
+		this.returnsTitleToPrevAlignElement_(this.alignElement);
 		this.callAsync_(function() {
 			if (this.locked_) {
 				return;
@@ -95,10 +111,15 @@ class TooltipBase extends Component {
 	 */
 	handleShow(event) {
 		var delegateTarget = event.delegateTarget;
+		this.returnsTitleToPrevAlignElement_(this.alignElement);
 		super.syncVisible(true);
 		this.callAsync_(function() {
+			var dataTitle = this.getTitle_(delegateTarget);
 			this.alignElement = delegateTarget;
 			this.visible = true;
+			if (dataTitle) {
+				this.title = dataTitle;
+			}
 		}, this.delay[0]);
 	}
 
@@ -133,6 +154,21 @@ class TooltipBase extends Component {
 	}
 
 	/**
+	 * Return the 'title' attribute to the previously align element and remove the
+	 * 'data-original-title' attribute from the current align element.
+	 * @param {Element} prevAlignElement
+	 */
+	returnsTitleToPrevAlignElement_(prevAlignElement) {
+		if (prevAlignElement) {
+			var originalTitle = prevAlignElement.getAttribute('data-original-title');
+			if (originalTitle) {
+				prevAlignElement.setAttribute('title', originalTitle);
+				prevAlignElement.removeAttribute('data-original-title');
+			}
+		}
+	}
+
+	/**
 	 * Attribute synchronization logic for `alignElement` attribute.
 	 * @param {Element} alignElement
 	 * @param {Element} prevAlignElement
@@ -142,10 +178,6 @@ class TooltipBase extends Component {
 			alignElement.removeAttribute('aria-describedby');
 		}
 		if (alignElement) {
-			var dataTitle = alignElement.getAttribute('data-title');
-			if (dataTitle) {
-				this.title = dataTitle;
-			}
 			if (this.visible) {
 				alignElement.setAttribute('aria-describedby', this.id);
 			} else {

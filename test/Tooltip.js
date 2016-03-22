@@ -69,7 +69,7 @@ describe('Tooltip', function() {
 	});
 
 	it('should get the title from the DOM', function(done) {
-		dom.enterDocument('<div id="tooltipTrigger2" data-title="title"></div>');
+		dom.enterDocument('<div id="tooltipTrigger2" title="title"></div>');
 		var trigger = dom.toElement('#tooltipTrigger2');
 
 		tooltip = new Tooltip({
@@ -79,12 +79,54 @@ describe('Tooltip', function() {
 
 		dom.triggerEvent(trigger, 'mouseover');
 		tooltip.once('attrsSynced', function() {
+			var innerElement = tooltip.element.querySelector('.tooltip-inner');
+			assert.strictEqual('title', innerElement.innerHTML);
+			dom.exitDocument(trigger);
+			done();
+		});
+	});
+
+	it('should remove/returns the title attribute from the DOM element on mouseover/mouseout', function(done) {
+		dom.enterDocument('<div id="tooltipTrigger3" title="title">trigger</div>');
+		var trigger = dom.toElement('#tooltipTrigger3');
+
+		tooltip = new Tooltip({
+			selector: '#tooltipTrigger3',
+			visible: false
+		}).render();
+
+		assert.strictEqual('title', trigger.getAttribute('title'));
+		dom.triggerEvent(trigger, 'mouseover');
+		tooltip.once('attrsSynced', function() {
+			assert.strictEqual(null, trigger.getAttribute('title'));
+			dom.triggerEvent(trigger, 'mouseout');
 			tooltip.once('attrsSynced', function() {
-				var innerElement = tooltip.element.querySelector('.tooltip-inner');
-				assert.strictEqual('title', innerElement.innerHTML);
-				dom.exitDocument(trigger);
-				done();
+				assert.strictEqual('title', trigger.getAttribute('title'));
+				dom.triggerEvent(trigger, 'mouseover');
+				tooltip.once('attrsSynced', function() {
+					assert.strictEqual(null, trigger.getAttribute('title'));
+					done();
+				});
 			});
+		});
+	});
+
+	it('should return the DOM to the incial state on Tooltip dispose', function(done) {
+		dom.enterDocument('<div id="tooltipTrigger3" title="title">trigger</div>');
+		var trigger = dom.toElement('#tooltipTrigger3');
+
+		tooltip = new Tooltip({
+			selector: '#tooltipTrigger3',
+			visible: false
+		}).render();
+
+		assert.strictEqual('title', trigger.getAttribute('title'));
+		dom.triggerEvent(trigger, 'mouseover');
+		tooltip.once('attrsSynced', function() {
+			assert.strictEqual(null, trigger.getAttribute('title'));
+			tooltip.dispose();
+			assert.strictEqual('title', trigger.getAttribute('title'));
+			done();
 		});
 	});
 });

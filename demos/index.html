@@ -13,9 +13,9 @@
 	<h1>Tooltip</h1>
 	<button type="button" id="TooltipButton">Tooltip Button</button>
 
-	<h2>Tooltips from data-title</h2>
-	<button type="button" data-title="Data Title 1">Data Title 1</button>
-	<button type="button" data-title="Data Title 2">Data Title 2</button>
+	<h2>Tooltips from title</h2>
+	<button type="button" title="Data Title 1">Data Title 1</button>
+	<button type="button" title="Data Title 2">Data Title 2</button>
 	<script type="text/javascript">
 		window.tooltip = new metal.Tooltip({
 			delay: [300, 150],
@@ -29,7 +29,7 @@
 		new metal.Tooltip({
 			delay: [300, 150],
 			elementClasses: 'fade',
-			selector: '[data-title]',
+			selector: '[title]',
 			visible: false
 		}).render();
 	</script>
