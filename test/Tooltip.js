@@ -50,13 +50,15 @@ describe('Tooltip', function() {
 	});
 
 	it('should decorate', function() {
-		IncrementalDOM.patch(document.body, () => {
+		var element = document.createElement('div');
+		dom.enterDocument(element);
+		IncrementalDOM.patch(element, () => {
 			Tooltip.TEMPLATE({
 				id: 'tooltip',
 				title: 'content'
 			});
 		});
-		var outerHTML = document.getElementById('tooltip').outerHTML;
+		var outerHTML = element.querySelector('#tooltip').outerHTML;
 
 		tooltip = new Tooltip({
 			element: '#tooltip',
