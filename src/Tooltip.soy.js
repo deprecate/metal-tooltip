@@ -17,9 +17,9 @@ goog.module('Tooltip.incrementaldom');
 var soy = goog.require('soy');
 var soydata = goog.require('soydata');
 /** @suppress {extraRequire} */
-goog.require('goog.i18n.bidi');
-/** @suppress {extraRequire} */
 goog.require('goog.asserts');
+/** @suppress {extraRequire} */
+goog.require('goog.i18n.bidi');
 var IncrementalDom = goog.require('incrementaldom');
 var ie_open = IncrementalDom.elementOpen;
 var ie_close = IncrementalDom.elementClose;
@@ -31,25 +31,33 @@ var iattr = IncrementalDom.attr;
 
 
 /**
- * @param {Object<string, *>=} opt_data
+ * @param {{
+ *    alignedPosition: (?),
+ *    elementClasses: (?),
+ *    id: (?),
+ *    position: (?),
+ *    title: (!soydata.SanitizedHtml|string)
+ * }} opt_data
  * @param {(null|undefined)=} opt_ignored
  * @param {Object<string, *>=} opt_ijData
  * @return {void}
  * @suppress {checkTypes}
  */
 function $render(opt_data, opt_ignored, opt_ijData) {
+  soy.asserts.assertType((opt_data.title instanceof Function) || (opt_data.title instanceof soydata.UnsanitizedText) || goog.isString(opt_data.title), 'title', opt_data.title, 'Function');
+  var title = /** @type {Function} */ (opt_data.title);
   var positionClasses__soy3 = ['top', 'top', 'right', 'bottom', 'bottom', 'bottom', 'left', 'top'];
   var currentPosition__soy4 = opt_data.alignedPosition != null ? opt_data.alignedPosition : opt_data.position;
   var positionClass__soy5 = currentPosition__soy4 != null ? positionClasses__soy3[currentPosition__soy4] : 'bottom';
   ie_open('div', null, null,
       'id', opt_data.id,
-      'class', 'tooltip component ' + positionClass__soy5 + (opt_data.elementClasses ? ' ' + opt_data.elementClasses : ''),
+      'class', 'tooltip ' + positionClass__soy5 + (opt_data.elementClasses ? ' ' + opt_data.elementClasses : ''),
       'role', 'tooltip');
     ie_void('div', null, null,
         'class', 'tooltip-arrow');
     ie_open('section', null, null,
         'class', 'tooltip-inner');
-      itext((goog.asserts.assert((opt_data.title ? opt_data.title : '') != null), opt_data.title ? opt_data.title : ''));
+      title();
     ie_close('section');
   ie_close('div');
 }
@@ -58,7 +66,7 @@ if (goog.DEBUG) {
   $render.soyTemplateName = 'Tooltip.render';
 }
 
-exports.render.params = ["alignedPosition","elementClasses","id","position","title"];
+exports.render.params = ["title","alignedPosition","elementClasses","id","position"];
 templates = exports;
 return exports;
 
