@@ -36,7 +36,7 @@ var iattr = IncrementalDom.attr;
  *    elementClasses: (?),
  *    id: (?),
  *    position: (?),
- *    title: (!soydata.SanitizedHtml|string)
+ *    title: (?soydata.SanitizedHtml|string|undefined)
  * }} opt_data
  * @param {(null|undefined)=} opt_ignored
  * @param {Object<string, *>=} opt_ijData
@@ -44,8 +44,8 @@ var iattr = IncrementalDom.attr;
  * @suppress {checkTypes}
  */
 function $render(opt_data, opt_ignored, opt_ijData) {
-  soy.asserts.assertType((opt_data.title instanceof Function) || (opt_data.title instanceof soydata.UnsanitizedText) || goog.isString(opt_data.title), 'title', opt_data.title, 'Function');
-  var title = /** @type {Function} */ (opt_data.title);
+  soy.asserts.assertType(opt_data.title == null || (opt_data.title instanceof Function) || (opt_data.title instanceof soydata.UnsanitizedText) || goog.isString(opt_data.title), 'title', opt_data.title, '?soydata.SanitizedHtml|string|undefined');
+  var title = /** @type {?soydata.SanitizedHtml|string|undefined} */ (opt_data.title);
   var positionClasses__soy3 = ['top', 'top', 'right', 'bottom', 'bottom', 'bottom', 'left', 'top'];
   var currentPosition__soy4 = opt_data.alignedPosition != null ? opt_data.alignedPosition : opt_data.position;
   var positionClass__soy5 = currentPosition__soy4 != null ? positionClasses__soy3[currentPosition__soy4] : 'bottom';
@@ -57,7 +57,9 @@ function $render(opt_data, opt_ignored, opt_ijData) {
         'class', 'tooltip-arrow');
     ie_open('section', null, null,
         'class', 'tooltip-inner');
-      title();
+      if (title) {
+        title();
+      }
     ie_close('section');
   ie_close('div');
 }

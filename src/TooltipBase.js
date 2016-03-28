@@ -280,8 +280,7 @@ TooltipBase.STATE = {
 	 * @type {string}
 	 */
 	title: {
-		isHtml: true,
-		value: ''
+		isHtml: true
 	}
 };
 
