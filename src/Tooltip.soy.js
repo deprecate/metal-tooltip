@@ -34,7 +34,6 @@ var iattr = IncrementalDom.attr;
  * @param {{
  *    alignedPosition: (?),
  *    elementClasses: (?),
- *    id: (?),
  *    position: (?),
  *    title: (?soydata.SanitizedHtml|string|undefined)
  * }} opt_data
@@ -44,13 +43,13 @@ var iattr = IncrementalDom.attr;
  * @suppress {checkTypes}
  */
 function $render(opt_data, opt_ignored, opt_ijData) {
+  opt_data = opt_data || {};
   soy.asserts.assertType(opt_data.title == null || (opt_data.title instanceof Function) || (opt_data.title instanceof soydata.UnsanitizedText) || goog.isString(opt_data.title), 'title', opt_data.title, '?soydata.SanitizedHtml|string|undefined');
   var title = /** @type {?soydata.SanitizedHtml|string|undefined} */ (opt_data.title);
   var positionClasses__soy3 = ['top', 'top', 'right', 'bottom', 'bottom', 'bottom', 'left', 'top'];
   var currentPosition__soy4 = opt_data.alignedPosition != null ? opt_data.alignedPosition : opt_data.position;
   var positionClass__soy5 = currentPosition__soy4 != null ? positionClasses__soy3[currentPosition__soy4] : 'bottom';
   ie_open('div', null, null,
-      'id', opt_data.id,
       'class', 'tooltip ' + positionClass__soy5 + (opt_data.elementClasses ? ' ' + opt_data.elementClasses : ''),
       'role', 'tooltip');
     ie_void('div', null, null,
@@ -68,7 +67,7 @@ if (goog.DEBUG) {
   $render.soyTemplateName = 'Tooltip.render';
 }
 
-exports.render.params = ["title","alignedPosition","elementClasses","id","position"];
+exports.render.params = ["title","alignedPosition","elementClasses","position"];
 templates = exports;
 return exports;
 

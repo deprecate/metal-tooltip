@@ -145,11 +145,6 @@ class TooltipBase extends Component {
 			if (dataTitle) {
 				this.title = dataTitle;
 			}
-			if (this.visible) {
-				alignElement.setAttribute('aria-describedby', this.id);
-			} else {
-				alignElement.removeAttribute('aria-describedby');
-			}
 			if (this.inDocument) {
 				this.alignedPosition = TooltipBase.Align.align(this.element, alignElement, this.position);
 			}

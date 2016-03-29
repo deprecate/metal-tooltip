@@ -59,10 +59,10 @@ describe('Tooltip', function() {
 				title: Soy.toIncDom('<b>content</b>')
 			});
 		});
-		var outerHTML = element.querySelector('#tooltip').outerHTML;
+		var outerHTML = element.childNodes[0].outerHTML;
 
 		tooltip = new Tooltip({
-			element: '#tooltip',
+			element: element.childNodes[0],
 			title: '<b>content</b>',
 			visible: false
 		}).decorate();

@@ -97,32 +97,6 @@ describe('TooltipBase', function() {
 		}, 25);
 	});
 
-	it('should set "aria-describedBy" on the current "alignElement"', function(done) {
-		dom.enterDocument('<div id="trigger">trigger</div>');
-		var trigger = dom.toElement('#trigger');
-
-		tooltip = new TooltipBase({
-			delay: [0, 0],
-			triggerEvents: ['click', 'click'],
-			selector: '#trigger',
-			visible: false
-		}).render();
-		dom.triggerEvent(trigger, 'click');
-		tooltip.once('stateChanged', function() {
-			tooltip.once('stateChanged', function() {
-				assert.strictEqual(tooltip.id, trigger.getAttribute('aria-describedBy'));
-				dom.triggerEvent(trigger, 'click');
-				tooltip.once('stateChanged', function() {
-					tooltip.once('stateChanged', function() {
-						assert.ok(!trigger.hasAttribute('aria-describedBy'));
-						dom.exitDocument(trigger);
-						done();
-					});
-				});
-			});
-		});
-	});
-
 	it('should set alignedPosition equal to position if well aligned to trigger', function(done) {
 		dom.enterDocument('<div id="trigger">trigger</div>');
 		var trigger = dom.toElement('#trigger');
