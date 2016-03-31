@@ -65,7 +65,7 @@ describe('Tooltip', function() {
 			element: element.childNodes[0],
 			title: '<b>content</b>',
 			visible: false
-		}).decorate();
+		}).render();
 
 		assert.strictEqual(tooltip.element.outerHTML, outerHTML);
 	});
