@@ -50,6 +50,31 @@ describe('Tooltip', function() {
 		});
 	});
 
+	it('should set display to none after tooltip hide animation', function(done) {
+		tooltip = new Tooltip();
+		assert.notStrictEqual('none', tooltip.element.style.display);
+
+		tooltip.visible = false;
+		tooltip.once('stateSynced', function() {
+			dom.triggerEvent(tooltip.element, 'animationend');
+			assert.strictEqual('none', tooltip.element.style.display);
+			done();
+		});
+	});
+
+	it('should not set display to none if tooltip is visible again when hide animation is done', function(done) {
+		tooltip = new Tooltip();
+		assert.notStrictEqual('none', tooltip.element.style.display);
+
+		tooltip.visible = false;
+		tooltip.once('stateSynced', function() {
+			tooltip.visible = true;
+			dom.triggerEvent(tooltip.element, 'animationend');
+			assert.notStrictEqual('none', tooltip.element.style.display);
+			done();
+		});
+	});
+
 	it('should decorate', function() {
 		var element = document.createElement('div');
 		dom.enterDocument(element);
