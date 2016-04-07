@@ -16,18 +16,16 @@ class TooltipBase extends Component {
 	/**
 	 * @inheritDoc
 	 */
-	constructor(opt_config) {
-		super(opt_config);
-
-		this.eventHandler_ = new EventHandler();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	attached() {
 		this.align();
 		this.syncTriggerEvents(this.triggerEvents);
+	}
+	
+	/**
+	 * @inheritDoc
+	 */
+	created() {
+		this.eventHandler_ = new EventHandler();
 	}
 
 	/**

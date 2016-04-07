@@ -20,7 +20,7 @@ describe('TooltipBase', function() {
 			delay: [0, 0],
 			selector: '#tooltipTrigger1',
 			visible: false
-		}).render();
+		});
 		assert.ok(!tooltip.visible);
 		dom.triggerEvent(trigger, 'mouseover');
 		setTimeout(function() {
@@ -40,7 +40,7 @@ describe('TooltipBase', function() {
 			selector: '#tooltipTrigger2',
 			visible: true,
 			alignElement: trigger
-		}).render();
+		});
 		dom.triggerEvent(trigger, 'mouseout');
 		setTimeout(function() {
 			assert.ok(!tooltip.visible);
@@ -58,7 +58,7 @@ describe('TooltipBase', function() {
 			triggerEvents: ['click', 'click'],
 			selector: '#tooltipTrigger3',
 			visible: false
-		}).render();
+		});
 		dom.triggerEvent(trigger, 'click');
 		setTimeout(function() {
 			assert.ok(tooltip.visible);
@@ -79,7 +79,7 @@ describe('TooltipBase', function() {
 			delay: [0, 0],
 			selector: '#tooltipTrigger4',
 			visible: false
-		}).render();
+		});
 		dom.triggerEvent(trigger, 'mouseover');
 		setTimeout(function() {
 			assert.ok(tooltip.visible);
@@ -104,7 +104,7 @@ describe('TooltipBase', function() {
 		tooltip = new TooltipBase({
 			position: TooltipBase.Align.Bottom,
 			selector: '#trigger'
-		}).render();
+		});
 		dom.triggerEvent(trigger, 'mouseover');
 
 		tooltip.once('stateSynced', function() {
@@ -123,7 +123,7 @@ describe('TooltipBase', function() {
 		tooltip = new TooltipBase({
 			position: TooltipBase.Align.Top,
 			selector: '#trigger'
-		}).render();
+		});
 		tooltip.element.style.width = '100px';
 		tooltip.element.style.height = '30px';
 		dom.triggerEvent(trigger, 'mouseover');
@@ -145,7 +145,7 @@ describe('TooltipBase', function() {
 			delay: [0, 0],
 			selector: '#tooltipTrigger5',
 			visible: false
-		}).render();
+		});
 		tooltip.detach();
 		dom.triggerEvent(trigger, 'mouseover');
 		setTimeout(function() {
@@ -165,7 +165,7 @@ describe('TooltipBase', function() {
 			delay: [0, 0],
 			triggerEvents: ['click', 'click'],
 			selector: '.trigger'
-		}).render();
+		});
 		dom.triggerEvent(trigger, 'click');
 		setTimeout(function() {
 			dom.triggerEvent(trigger, 'click');
@@ -188,7 +188,7 @@ describe('TooltipBase', function() {
 			delay: [0, 0],
 			selector: '#tooltipTrigger1',
 			visible: false
-		}).render();
+		});
 		dom.triggerEvent(trigger, 'mouseover');
 		tooltip.dispose();
 

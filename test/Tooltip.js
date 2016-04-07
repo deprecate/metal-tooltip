@@ -15,20 +15,20 @@ describe('Tooltip', function() {
 	});
 
 	it('should render with default state', function() {
-		tooltip = new Tooltip().render();
+		tooltip = new Tooltip();
 		assert.strictEqual('', tooltip.element.style.display);
 	});
 
 	it('should render with title', function() {
 		tooltip = new Tooltip({
 			title: 'content'
-		}).render();
+		});
 		var innerElement = tooltip.element.querySelector('.tooltip-inner');
 		assert.strictEqual('content', innerElement.innerHTML);
 	});
 
 	it('should update when title state changes', function(done) {
-		tooltip = new Tooltip().render();
+		tooltip = new Tooltip();
 		tooltip.title = 'content';
 		async.nextTick(function() {
 			var innerElement = tooltip.element.querySelector('.tooltip-inner');
@@ -40,7 +40,7 @@ describe('Tooltip', function() {
 	it('should set opacity to 1 when tooltip becomes visible', function(done) {
 		tooltip = new Tooltip({
 			visible: false
-		}).render();
+		});
 		assert.notStrictEqual('1', tooltip.element.style.opacity);
 
 		tooltip.visible = true;
@@ -65,7 +65,7 @@ describe('Tooltip', function() {
 			element: element.childNodes[0],
 			title: '<b>content</b>',
 			visible: false
-		}).render();
+		});
 
 		assert.strictEqual(tooltip.element.outerHTML, outerHTML);
 	});
@@ -77,7 +77,7 @@ describe('Tooltip', function() {
 		tooltip = new Tooltip({
 			selector: '#tooltipTrigger2',
 			visible: false
-		}).render();
+		});
 
 		dom.triggerEvent(trigger, 'mouseover');
 		tooltip.on('stateSynced', function(data) {
