@@ -26,15 +26,15 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "metal": "^1.0.0-rc.1",
-    "metal-component": "^1.0.0-rc.3",
-    "metal-dom": "^1.0.0-rc.2",
-    "metal-events": "^1.0.0-rc.1",
-    "metal-position": "^1.0.0-rc.1",
-    "metal-soy": "^1.0.0-rc.4"
+    "metal": "^1.0.0-rc",
+    "metal-component": "^1.0.0-rc.23",
+    "metal-dom": "^1.0.0-rc.13",
+    "metal-events": "^1.0.0-rc.4",
+    "metal-position": "^1.0.0-rc.2",
+    "metal-soy": "^1.0.0-rc.13"
   },
   "devDependencies": {
     "gulp": "^3.8.11",
-    "gulp-metal": "^1.0.0"
+    "gulp-metal": "^1.7.1"
   }
 }
