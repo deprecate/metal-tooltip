@@ -12,13 +12,16 @@
     "node": ">=0.12.0",
     "npm": ">=3.0.0"
   },
-  "main": "src/Tooltip.js",
+	"jsnext:main": "src/Tooltip.js",
+  "main": "lib/Tooltip.js",
   "files": [
+		"lib",
     "src",
     "test"
   ],
   "scripts": {
-    "prepublish": "gulp soy",
+		"compile": "babel --presets metal -d lib/ src/",
+		"prepublish": "gulp soy && npm run compile",
     "test": "gulp test"
   },
   "keywords": [
@@ -35,6 +38,8 @@
     "metal-soy": "^1.0.0-rc.13"
   },
   "devDependencies": {
+		"babel-cli": "^6.4.5",
+		"babel-preset-metal": "^4.0.0",
     "gulp": "^3.8.11",
     "gulp-metal": "^1.7.1"
   }
