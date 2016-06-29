@@ -1,6 +1,6 @@
 {
   "name": "metal-tooltip",
-  "version": "1.0.0-rc.4",
+  "version": "1.0.0-rc.5",
   "description": "Metal's tooltip component",
   "license": "BSD",
   "repository": "metal/metal-tooltip",
