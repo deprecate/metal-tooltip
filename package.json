@@ -30,12 +30,12 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "metal": "^1.0.0-rc",
-    "metal-component": "^1.0.0-rc.23",
-    "metal-dom": "^1.0.0-rc.13",
-    "metal-events": "^1.0.0-rc.4",
-    "metal-position": "^1.0.0-rc.2",
-    "metal-soy": "^1.0.0-rc.13"
+    "metal": "^1.0.0",
+    "metal-component": "^1.0.0",
+    "metal-dom": "^1.0.0",
+    "metal-events": "^1.0.0",
+    "metal-position": "^1.0.0",
+    "metal-soy": "^1.0.0"
   },
   "devDependencies": {
 		"babel-cli": "^6.4.5",
