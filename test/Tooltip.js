@@ -2,7 +2,6 @@
 
 import { async } from 'metal';
 import dom from 'metal-dom';
-import Soy from 'metal-soy';
 import Tooltip from '../src/Tooltip';
 
 var tooltip;
@@ -81,14 +80,14 @@ describe('Tooltip', function() {
 		IncrementalDOM.patch(element, () => {
 			Tooltip.TEMPLATE({
 				id: 'tooltip',
-				title: Soy.toIncDom('<b>content</b>')
+				title: 'content'
 			});
 		});
 		var outerHTML = element.childNodes[0].outerHTML;
 
 		tooltip = new Tooltip({
 			element: element.childNodes[0],
-			title: '<b>content</b>',
+			title: 'content',
 			visible: false
 		});
 

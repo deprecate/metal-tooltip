@@ -20,7 +20,7 @@ class TooltipBase extends Component {
 		this.align();
 		this.syncTriggerEvents(this.triggerEvents);
 	}
-	
+
 	/**
 	 * @inheritDoc
 	 */
@@ -273,7 +273,6 @@ TooltipBase.STATE = {
 	 * @type {string}
 	 */
 	title: {
-		isHtml: true
 	}
 };
 
