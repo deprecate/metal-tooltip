@@ -15,7 +15,7 @@ class Tooltip extends TooltipBase {
 	 * @protected
 	 */
 	hideCompletely_() {
-		if (!this.visible) {
+		if (!this.isDisposed() && this.element && !this.visible) {
 			this.element.style.display = 'none';
 		}
 	}

@@ -74,6 +74,33 @@ describe('Tooltip', function() {
 		});
 	});
 
+	it('should not throw error if tooltip if element is removed before animation is done', function(done) {
+		tooltip = new Tooltip();
+		tooltip.visible = false;
+		tooltip.once('stateSynced', function() {
+			const element = tooltip.element;
+			tooltip.element = null;
+			assert.doesNotThrow(() => {
+				dom.triggerEvent(element, 'animationend');
+			});
+			done();
+		});
+	});
+
+	it('should not throw error if tooltip if disposed before animation is done', function(done) {
+		tooltip = new Tooltip();
+		tooltip.visible = false;
+		tooltip.once('stateSynced', function() {
+			tooltip.dispose();
+			sinon.stub(console, 'warn');
+			dom.triggerEvent(tooltip.element, 'animationend');
+			assert.equal(0, console.warn.callCount);
+
+			console.warn.restore();
+			done();
+		});
+	});
+
 	it('should decorate', function() {
 		var element = document.createElement('div');
 		dom.enterDocument(element);
