@@ -22,7 +22,7 @@ describe('Tooltip', function() {
 		tooltip = new Tooltip({
 			title: 'content'
 		});
-		var innerElement = tooltip.element.querySelector('.tooltip-inner');
+		const innerElement = tooltip.element.querySelector('.tooltip-inner');
 		assert.strictEqual('content', innerElement.innerHTML);
 	});
 
@@ -30,7 +30,7 @@ describe('Tooltip', function() {
 		tooltip = new Tooltip();
 		tooltip.title = 'content';
 		async.nextTick(function() {
-			var innerElement = tooltip.element.querySelector('.tooltip-inner');
+			const innerElement = tooltip.element.querySelector('.tooltip-inner');
 			assert.strictEqual('content', innerElement.innerHTML);
 			done();
 		});
@@ -102,7 +102,7 @@ describe('Tooltip', function() {
 	});
 
 	it('should decorate', function() {
-		var element = document.createElement('div');
+		const element = document.createElement('div');
 		dom.enterDocument(element);
 		IncrementalDOM.patch(element, () => {
 			Tooltip.TEMPLATE({
@@ -110,7 +110,7 @@ describe('Tooltip', function() {
 				title: 'content'
 			});
 		});
-		var outerHTML = element.childNodes[0].outerHTML;
+		const outerHTML = element.childNodes[0].outerHTML;
 
 		tooltip = new Tooltip({
 			element: element.childNodes[0],
@@ -123,7 +123,7 @@ describe('Tooltip', function() {
 
 	it('should get the title from the DOM', function(done) {
 		dom.enterDocument('<div id="tooltipTrigger2" data-title="title"></div>');
-		var trigger = dom.toElement('#tooltipTrigger2');
+		const trigger = dom.toElement('#tooltipTrigger2');
 
 		tooltip = new Tooltip({
 			selector: '#tooltipTrigger2',
@@ -133,7 +133,7 @@ describe('Tooltip', function() {
 		dom.triggerEvent(trigger, 'mouseover');
 		tooltip.on('stateSynced', function(data) {
 			if (data.changes.title) {
-				var innerElement = tooltip.element.querySelector('.tooltip-inner');
+				const innerElement = tooltip.element.querySelector('.tooltip-inner');
 				assert.strictEqual('title', innerElement.innerHTML);
 				dom.exitDocument(trigger);
 				done();
