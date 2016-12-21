@@ -70,8 +70,8 @@ class TooltipBase extends Component {
 	 * @protected
 	 */
 	handleHide(event) {
-		var delegateTarget = event.delegateTarget;
-		var interactingWithDifferentTarget = delegateTarget && (delegateTarget !== this.alignElement);
+		const delegateTarget = event.delegateTarget;
+		const interactingWithDifferentTarget = delegateTarget && (delegateTarget !== this.alignElement);
 		this.callAsync_(function() {
 			if (this.locked_) {
 				return;
@@ -91,7 +91,7 @@ class TooltipBase extends Component {
 	 * @protected
 	 */
 	handleShow(event) {
-		var delegateTarget = event.delegateTarget;
+		const delegateTarget = event.delegateTarget;
 		super.syncVisible(true);
 		this.callAsync_(function() {
 			this.alignElement = delegateTarget;
@@ -139,7 +139,7 @@ class TooltipBase extends Component {
 			alignElement.removeAttribute('aria-describedby');
 		}
 		if (alignElement) {
-			var dataTitle = alignElement.getAttribute('data-title');
+			const dataTitle = alignElement.getAttribute('data-title');
 			if (dataTitle) {
 				this.title = dataTitle;
 			}
@@ -172,7 +172,7 @@ class TooltipBase extends Component {
 			return;
 		}
 		this.eventHandler_.removeAllListeners();
-		var selector = this.selector;
+		const selector = this.selector;
 		if (!selector) {
 			return;
 		}
