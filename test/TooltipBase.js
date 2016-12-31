@@ -25,7 +25,7 @@ describe('TooltipBase', function() {
 		dom.triggerEvent(trigger, 'mouseover');
 		setTimeout(function() {
 			assert.ok(tooltip.visible);
-			assert.strictEqual(trigger, tooltip.alignElement);
+			assert.strictEqual(trigger, tooltip.currentAlignElement);
 			dom.exitDocument(trigger);
 			done();
 		}, 25);
@@ -172,7 +172,7 @@ describe('TooltipBase', function() {
 			dom.triggerEvent(triggerOther, 'click');
 			setTimeout(function() {
 				assert.ok(tooltip.visible);
-				assert.strictEqual(triggerOther, tooltip.alignElement);
+				assert.strictEqual(triggerOther, tooltip.currentAlignElement);
 				dom.exitDocument(trigger);
 				dom.exitDocument(triggerOther);
 				done();

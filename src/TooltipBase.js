@@ -25,6 +25,7 @@ class TooltipBase extends Component {
 	 * @inheritDoc
 	 */
 	created() {
+		this.currentAlignElement = this.alignElement;
 		this.eventHandler_ = new EventHandler();
 	}
 
@@ -51,7 +52,7 @@ class TooltipBase extends Component {
 	 * @param {Element=} opt_alignElement Optional element to align with.
 	 */
 	align(opt_alignElement) {
-		this.syncAlignElement(opt_alignElement || this.alignElement);
+		this.syncCurrentAlignElement(opt_alignElement || this.currentAlignElement);
 	}
 
 	/**
@@ -71,13 +72,13 @@ class TooltipBase extends Component {
 	 */
 	handleHide(event) {
 		const delegateTarget = event.delegateTarget;
-		const interactingWithDifferentTarget = delegateTarget && (delegateTarget !== this.alignElement);
+		const interactingWithDifferentTarget = delegateTarget && (delegateTarget !== this.currentAlignElement);
 		this.callAsync_(function() {
 			if (this.locked_) {
 				return;
 			}
 			if (interactingWithDifferentTarget) {
-				this.alignElement = delegateTarget;
+				this.currentAlignElement = delegateTarget;
 			} else {
 				this.visible = false;
 				this.syncVisible(false);
@@ -94,7 +95,7 @@ class TooltipBase extends Component {
 		const delegateTarget = event.delegateTarget;
 		super.syncVisible(true);
 		this.callAsync_(function() {
-			this.alignElement = delegateTarget;
+			this.currentAlignElement = delegateTarget;
 			this.visible = true;
 		}, this.delay[0]);
 	}
@@ -130,11 +131,20 @@ class TooltipBase extends Component {
 	}
 
 	/**
-	 * State synchronization logic for `alignElement`.
+	 * Synchronizes the value of the `currentAlignElement` internal state
+	 * with the `alignElement`.
+	 * @param {Element} alignElement
+	 */
+	syncAlignElement(alignElement) {
+		this.currentAlignElement = alignElement;
+	}
+
+	/**
+	 * State synchronization logic for `currentAlignElement`.
 	 * @param {Element} alignElement
 	 * @param {Element} prevAlignElement
 	 */
-	syncAlignElement(alignElement, prevAlignElement) {
+	syncCurrentAlignElement(alignElement, prevAlignElement) {
 		if (prevAlignElement) {
 			alignElement.removeAttribute('aria-describedby');
 		}
@@ -153,7 +163,7 @@ class TooltipBase extends Component {
 	 * State synchronization logic for `position`.
 	 */
 	syncPosition() {
-		this.syncAlignElement(this.alignElement);
+		this.syncCurrentAlignElement(this.currentAlignElement);
 	}
 
 	/**
@@ -225,6 +235,15 @@ TooltipBase.STATE = {
 	 * @type {Element}
 	 */
 	alignElement: {
+		setter: dom.toElement
+	},
+
+	/**
+	 * The current element aligned tooltip with.
+	 * @type {Element}
+	 */
+	currentAlignElement: {
+		internal: true,
 		setter: dom.toElement
 	},
 
