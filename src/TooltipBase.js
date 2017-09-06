@@ -302,4 +302,5 @@ TooltipBase.STATE = {
  */
 TooltipBase.PositionClasses = ['top', 'right', 'bottom', 'left'];
 
+export { TooltipBase };
 export default TooltipBase;
